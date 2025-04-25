@@ -7,7 +7,6 @@ export default function Home() {
       {/* Word Counter Section */}
       <section
         id="wordcount"
-        className="min-h-screen flex items-center justify-center"
       >
         <WordCounterPages />
       </section>

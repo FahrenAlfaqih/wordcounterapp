@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { TypeAnimation } from "react-type-animation";
 
 export default function WordCounterPages() {
   const [text, setText] = useState("");
@@ -95,25 +96,84 @@ export default function WordCounterPages() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md">
-      <h1 className="text-xl font-bold mb-4 text-black">🔗 Text Area</h1>
-      <textarea
-        value={text}
-        onChange={handleTextChange}
-        placeholder="Masukkan teks di sini..."
-        rows="6"
-        className="w-full p-2 border rounded-lg text-black"
-      />
-      <p className="text-gray-800">Jumlah Kata : {wordCounter}</p>
-      <p className="text-gray-800">Jumlah Karakter : {charCounter}</p>
-      <p className="text-gray-800">Jumlah Kalimat : {sentenceCounter}</p>
-      <p className="text-gray-800">Jumlah Paragraf : {paragraphCounter}</p>
-      <p className="text-gray-800">
-        Tingkat Bacaan : {readingLevel.toFixed(2)}
-      </p>
-      <p className="text-gray-800">Tingkat Pembaca : {readingLevelLabel}</p>
-      <p className="text-gray-800">Waktu Membaca : {readingTime}</p>
-      <p className="text-gray-800">Waktu Berbicara : {speakingTime}</p>
-    </div>
+    <>
+      <div className="space-y-3 px-4 py-6 bg-gray-100 min-h-screen">
+        <div className="flex gap-4">
+          {/* Info Box */}
+          <div className="basis-2/3  w-full p-4 bg-white rounded-xl shadow-lg border border-blue-100">
+            <h1 className="text-3xl font-semibold text-blue-900 break-words">
+              📊 <span className="text-blue-700">{wordCounter} Kata</span>{" "}
+              &nbsp;|&nbsp;
+              <span className="text-purple-700">{charCounter} Karakter</span>
+            </h1>
+          </div>
+
+          {/* Detail Box */}
+          <div className="basis-1/3 w-full p-4 bg-white rounded-xl shadow-lg border border-blue-100">
+            <h1 className="text-3xl font-semibold text-blue-900 break-words">
+              🔍<span className="text-blue-950">Detail</span>{" "}
+            </h1>
+          </div>
+        </div>
+
+        <div className="flex gap-4">
+          {/* Text Area Box */}
+          <div className="basis-2/3 w-full p-6 bg-white rounded-xl shadow-lg border border-gray-200">
+            <h2 className="text-2xl font-bold text-blue-950 mb-3">🔗
+              
+              <TypeAnimation
+                sequence={[" Masukkan Teks", 1000, "", 100]}
+                wrapper="span"
+                speed={10}
+                repeat={Infinity}
+                className="text-blue-950"
+              />
+            </h2>
+
+            <textarea
+              value={text}
+              onChange={handleTextChange}
+              placeholder="Tulis sesuatu di sini..."
+              rows="13"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 text-gray-900 resize-none"
+            />
+          </div>
+
+          {/* Detail Box */}
+          <div className="basis-1/3 w-full p-4 bg-white rounded-xl shadow-lg border border-blue-100">
+            <div className="mt-4 space-y-1 text-gray-700 text-md">
+              <p>
+                📝 Kata <strong>{wordCounter}</strong>
+              </p>
+              <p>
+                🔡 Karakter <strong>{charCounter}</strong>
+              </p>
+              <p>
+                📚 Kalimat <strong>{sentenceCounter}</strong>
+              </p>
+              <p>
+                🧾 Paragraf <strong>{paragraphCounter}</strong>
+              </p>
+              <p>
+                📖 Tingkat Bacaan: <strong>{readingLevel.toFixed(2)}</strong>
+              </p>
+              <p>
+                👤 Tingkat Pembaca: <strong>{readingLevelLabel}</strong>
+              </p>
+              <p>
+                ⏱️ Waktu Membaca: <strong>{readingTime}</strong>
+              </p>
+              <p>
+                🗣️ Waktu Berbicara: <strong>{speakingTime}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-100 min-h-screen"></div>
+      </div>
+
+
+    </>
   );
 }
